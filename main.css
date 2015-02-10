@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ccc;
+}
+
+.displayarea {
+    border: 2px solid #000;
+    margin: 20px auto;
+    left: 100px;
+    width: 100%;
+    margin: 10px;
+    /*height: 200px;*/
+
+}
+
+.quoteheading {
+    display:inline-block;
+    border-bottom: 2px solid #000;
+    text-align:center;
+}
+
+.quotearea {
+    display:inline-block;
+    border-bottom: 2px solid #000;
+}
+
+.quote {
+    width: 500px;
+    padding:10px;
+    display:inline-block;
+}
+
+.author {
+    width: 100px;
+    padding: 10px;
+    display:inline-block;
+}
+
+.rating {
+    width: 50px;
+    padding: 10px;
+    display:inline-block;
+    margin: auto;
+}
+
+.action {
+    width: 50px;
+    padding: 10px;
+    display:inline-block;
+    margin: auto;
+    margin: 10px;
+}
+
+.inputquotearea {
+    margin: 10px;
+    
+}
+
+.randomquotecontainer {
+    margin:auto;
+    background: peachpuff;
+    width: 500px;
+    height: 300px;
+    /*display:absolute;*/
+    top:50px;
+    border: 2px solid black;
+
+}
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Untitled</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+    <h1>Quotes</h1>
+    <div class="displayarea">
+        <div class="quoteheading">
+            <div class="quote"><strong>Quote</strong></div>
+            <div class="author"><strong>Author</strong></div>
+            <div class="rating"><strong>Rating</strong></div>
+            <div class="action"><strong>Action</strong></div>
+        </div>
+    </div>
+    <div class="actionarea">
+        <button id="addnewquote">Add a Quote</button>
+        <button id="viewrandomquote">View a Random Quote</button>
+        <button class="undoquote">Undo a Quote</button>
+    </div>
+    <div class="inputquotearea">
+        <form class="inputquoteform">
+        Text: <input type="text" id="textid" value="Enter Text Here"/><br/>
+        Author: <input type="text" id="authorid" value="Enter Author Here"/><br/>
+        Rating: <input type="text" id="ratingid" value="Enter Rating Here"/><br/>
+        <input type="submit" value="submit" />
+        </form>
+    </div>
+    <div class="randomquotecontainer">
+    </div>
+
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+
+  </body>
+</html>

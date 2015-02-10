@@ -1,0 +1,27 @@
+// Project: Inspirational Quotes
+// Objective: Build a client-side web app that allow users to share inspirational quotes. 
+
+Requirements:
+ ✔ A user can add a new quote through a form. The form should ask for the quote and author, which are both required. @done (15-02-03 14:40)
+ ☐ Display a list of all the quotes. This list should update in real-time when quotes are added, deleted, or rated.
+ ☐ User can click on the author of a quote to go to a separate page/sceeen that shows all quotes from that person.
+ ☐ Users can rate a quote 1-5 stars.
+ ✔ Quotes should be sorted by rating. @done (15-02-03 11:59)
+ ☐ Make a 'Random Quote' button that selects a quote at random and displays it in a popup (not an alert).
+ ☐ User can delete a quote. The user should be given the option to undo their last action.
+Tasks:
+ ✔ create an Quote class - quote & author @done (15-02-03 10:53)
+ ✔ test the Quote class @done (15-02-03 10:53)
+ ✔ display quotes on screen - each quote has an item #, quote, author, rating @done (15-02-03 11:47)
+ ✔ create a list of quotes and display them on screen @done (15-02-03 11:47)
+ ✔ sort the listing @done (15-02-03 11:58)
+ ✔ add new quotes @done (15-02-03 14:39)
+ ✔ random quote function @done (15-02-03 15:14)
+ ☐ random quote ui
+ ☐ rate quotes
+ ✔ delete quotes @done (15-02-03 16:18)
+ ☐ undo the last quote
+ ☐ edit the rating
+
+
+ 
