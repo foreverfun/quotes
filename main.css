@@ -24,6 +24,14 @@ body {
     text-align:center;
 }
 
+.quotecontentarea {
+    /*border: 2px solid #000;*/
+    margin: 20px auto;
+    left: 100px;
+    width: 100%;
+    margin: 10px;
+}
+
 .quotearea {
     display:inline-block;
     border-bottom: 2px solid #000;

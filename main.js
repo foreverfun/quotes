@@ -6,8 +6,7 @@ var Quote = function(quote, author, rating) {
 }
 
 Quote.prototype.render = function() {
-  this.$el = $('<div>')
-    .addClass('quotearea')
+  this.$el = $('<div class="quotearea">')
     .append( 
       '<div class="quote">' + this.quote + '</div>'+ 
       '<div class="author">' + this.author + '</div>' + 
@@ -71,6 +70,25 @@ var builtInQuote = function(quoteArray) {
   quoteArray.push(quote5);
 }
 
+var displayQuotes = function(quoteArray) {
+  // display quotes on screen
+  $('.displayarea') 
+    .append('<div class="quotecontentarea">');
+  
+  for (var i=0; i<quoteArray.length; i++) {
+    //console.log(quoteArray[i]);
+    $('.quotecontentarea')
+        .append(quoteArray[i].render());
+  }  
+}
+
+var removeQuotes = function() {
+  $('.quotecontentarea').remove();
+}
+//==============================================================
+// main program
+//==============================================================
+
 $(document).on('ready', function() {
   var quoteArray = [];
   //var undoArray = [];
@@ -80,106 +98,108 @@ $(document).on('ready', function() {
   hideUndoButton();
   builtInQuote(quoteArray);  
   quoteArray = sortArray(quoteArray);
-  // display quotes on screen 
-  for (var i=0; i<quoteArray.length; i++) {
-    //console.log(quoteArray[i]);
-    $('.displayarea')
-        .append(quoteArray[i].render());
-  }  
   
-$('#addnewquote').on('click', showQuoteForm)
- 
-$('#viewrandomquote').on('click', function() {
-    
-    console.log(quoteArray.length);
-    console.log("Random: ", Math.floor(Math.random()*quoteArray.length));
-    var randomQuote = quoteArray[Math.floor(Math.random()*quoteArray.length)];
-    console.log(randomQuote);
-    
-    $('.randomquote').remove();
-    
-    $('.randomquotecontainer').
-      append(
-        "<div class='randomquote'>" 
-        + randomQuote.quote + " " 
-        + randomQuote.author + " "
-        + randomQuote.rating 
-        + "</div>");     
+  displayQuotes(quoteArray);
+  
+  $('#cleardisplay').on('click', removeQuotes);
 
- });
+  
+  $('#addnewquote').on('click', showQuoteForm)
+ 
+  $('#viewrandomquote').on('click', function() {
+      
+      console.log(quoteArray.length);
+      console.log("Random: ", Math.floor(Math.random()*quoteArray.length));
+      var randomQuote = quoteArray[Math.floor(Math.random()*quoteArray.length)];
+      console.log(randomQuote);
+      
+      $('.randomquote').remove();
+      
+      $('.randomquotecontainer').
+        append(
+          "<div class='randomquote'>" 
+          + randomQuote.quote + " " 
+          + randomQuote.author + " "
+          + randomQuote.rating 
+          + "</div>");     
+
+   });
 
   //$('.inputquoteform').on('submit', acquireUserInput); 
-  $('.inputquoteform').on('submit', function(e) {
-      e.preventDefault();
-      quoteArray.push(new Quote(
-      $('#textid').val(), 
-      $('#authorid').val(), 
-      $('#ratingid').val()));  
-      //console.log($('#textid').val(), $('#authorid').val(), $('#ratingid').val())
-      quoteArray = sortArray(quoteArray);
-      $('.quotearea').remove();
-      for (var i=0; i<quoteArray.length; i++) {
+    $('.inputquoteform').on('submit', function(e) {
+        e.preventDefault();
+        quoteArray.push(new Quote(
+        $('#textid').val(), 
+        $('#authorid').val(), 
+        $('#ratingid').val()));  
+        //console.log($('#textid').val(), $('#authorid').val(), $('#ratingid').val())
+        quoteArray = sortArray(quoteArray);
+        $('.quotearea').remove();
+        for (var i=0; i<quoteArray.length; i++) {
 
-      $('.displayarea')
-        .append(quoteArray[i].render());
-      }  
-  });
+        $('.displayarea')
+          .append(quoteArray[i].render());
+        }  
+    });
 
-  $()
 
-  $('.author').on('click', function() {
-      console.log(this);
 
-  });
+    $('.author').on('click', function() {
+        console.log(this);
 
-  $('.rating').on('click', function() {
-      console.log(this);
-  });
+    });
 
-  $('.action').on('click', function() {
-      console.log("action:", this);
-      var tempArray = $(this).siblings();
-  
-      // // save the quote to undo array
+    $('.rating').on('click', function() {
+        console.log(this);
+    });
+
+    $('.action').on('click', function() {
+        
+        console.log("action:", this);
+        var tempArray = $(this).siblings();
     
-      undoQuote.quote = $(tempArray[0]).text();
-      undoQuote.author = $(tempArray[1]).text();
-      undoQuote.rating = $(tempArray[2]).text();
-
-      //     console.log(undoQuote);
+        // // save the quote to undo array
       
-      // console.log($(this).parent());
-      // // delete the element from screen
-      $(this).parent().remove();
+        undoQuote.quote = $(tempArray[0]).text();
+        undoQuote.author = $(tempArray[1]).text();
+        undoQuote.rating = $(tempArray[2]).text();
 
-      // // delete the element from quoteArray
-      for (var i=0; i<quoteArray.length; i++) {
-        if (quoteArray[i].quote === undoQuote.quote) {
-          quoteArray.splice(i,1);
-          break;
+        //     console.log(undoQuote);
+        
+        // console.log($(this).parent());
+        // // delete the element from screen
+        $(this).parent().remove();
+
+        // // delete the element from quoteArray
+        for (var i=0; i<quoteArray.length; i++) {
+          if (quoteArray[i].quote === undoQuote.quote) {
+            quoteArray.splice(i,1);
+            break;
+          }
         }
-      }
-      $('.quotearea').remove();
-      for (var i=0; i<quoteArray.length; i++) {
-        $('.displayarea')
-          .append(quoteArray[i].render());
-      } 
+        
+        // $('.quotearea').remove();
+        
+        // for (var i=0; i<quoteArray.length; i++) {
+        //   $('.displayarea')
+        //     .append(quoteArray[i].render());
+        // } 
 
-      // show undo button
-      showUndoButton();
+        removeQuotes(quoteArray);
+        displayQuotes(quoteArray);
+        // show undo button
+        //showUndoButton();
 
-  });
+    });
 
-  $('.undoquote').on('click', function() {
-      quoteArray.push(undoQuote);
-      quoteArray = sortArray(quoteArray);
-      $('.quotearea').remove();
-      for (var i=0; i<quoteArray.length; i++) {
-        $('.displayarea')
-          .append(quoteArray[i].render());
-      }  
-      undoQuote = {};
-      hideUndoButton();
-  });
+    $('.undoquote').on('click', function() {
+        removeQuotes(quoteArray);
+        quoteArray.push(undoQuote);
+        quoteArray = sortArray(quoteArray);
+        $('.quotearea').remove();
+        displayQuotes(quoteArray);  
+        undoQuote = {};
+        hideUndoButton();
+    });
   
 });
